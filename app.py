@@ -60,7 +60,7 @@ IMPORTANT INSTRUCTIONS:
 4. If the context isn't sufficient for a valid gig-related question, politely say so and offer relevant help with marketplace features.
 """,
     input_variables=["context", "input"] 
-
+)
 # ─── Initialize LLM ───────────────────────────────────────────────────────────────
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash-latest",
