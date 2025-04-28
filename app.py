@@ -47,16 +47,19 @@ retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 # ─── Define prompt template ───────────────────────────────────────────────────────
 prompt = PromptTemplate(
     template="""
-You are the Gig Marketplace chatbot. Respond clearly, concisely, and conversationally.
+You are the Gig Marketplace chatbot designed exclusively to answer questions about the gig marketplace platform and its services.
 
 User's Question: {input}
 
 Context: {context}
 
-If context isn't sufficient, politely say so and offer help.
+IMPORTANT INSTRUCTIONS:
+1. ONLY answer questions directly related to the gig marketplace, freelancing, jobs, or platform functionality.
+2. If the user asks about ANY topic outside gig marketplace matters (like celebrities, general knowledge, programming languages, database queries, technology not specific to the platform, etc.), respond with: "I'm designed to assist only with questions about our gig marketplace. Please ask me about finding jobs, posting gigs, platform features, or other marketplace-related topics."
+3. When answering valid gig-related questions, respond clearly, concisely, and conversationally based on the provided context.
+4. If the context isn't sufficient for a valid gig-related question, politely say so and offer relevant help with marketplace features.
 """,
-    input_variables=["context", "input"]  # changed "question" -> "input"
-)
+    input_variables=["context", "input"] 
 
 # ─── Initialize LLM ───────────────────────────────────────────────────────────────
 llm = ChatGoogleGenerativeAI(
